@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.utils import timezone
 from .models import Post
 
@@ -8,4 +8,8 @@ def post_list(request):
   # requestはインターネットのを介してユーザから受け取った全ての情報
   # 'posts'は名前,postsはクエリセット(上記の変数)
   return render(request,'blog/post_list.html',{'posts':posts})
+
+def post_detail(request,pk):
+  post=get_object_or_404(Post,pk=pk)
+  return render(request,'blog/post_detail.html',{'post':post})
 

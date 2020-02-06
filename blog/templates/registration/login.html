@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  {% if form.errors %}
+    <p>ユーザネームとパスワードが一致しません。もう一度入力してください。</p>
+  {% endif %}
+
+  <form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+      <table>
+        <tr>
+          <tb>{{form.username.label_tag}}</tb>
+          <tb>{{form.username}}</tb>
+        </tr>
+          <td>{{form.password.label_tag}}</td>
+          <td>{{form.password}}</td>
+      </table>
+
+      <input type="submit" value="login">
+      <input type="hidden" name="next" value="{{next}}">
+  </form>
+{% endblock %}
